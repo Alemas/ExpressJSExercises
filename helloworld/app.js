@@ -33,6 +33,26 @@ app.get('/blocks', function(request, response) {
 
 });
 
+//Gets called when being redirected by /blocks
+app.get('/parts', function(request, response) {
+
+  //Creates json value
+  var json = {name : 'Synapps',
+              location : 'Tecnopuc'};
+
+  //Sends json as response
+  response.send(json);
+
+});
+
+app.get('/bad', function(request, response) {
+
+  var error = {errorMessage : 'Unable to handle request'};
+
+  response.send(error);
+
+});
+
 //Binds application to a port in the machine
 app.listen(3000, function() {
   console.log('Listening on port 3000');
