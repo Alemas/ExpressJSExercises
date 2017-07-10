@@ -1,14 +1,19 @@
+//require express library
 var express = require('express');
+
+//creates app instance
 var app = express();
 
+//sets handler for a HTTP Request
 app.get('/', function(request, response) {
 
   //Uses Express API
-  //response.send('Hello World');
+  //Sends response to the request
+  // response.send('Hello World');
 
   //Uses Node API
   response.write('Hello World');
-  reponse.end();
+  response.end();
 });
 
 app.get('/blocks', function(request, response) {
@@ -28,6 +33,7 @@ app.get('/blocks', function(request, response) {
 
 });
 
+//Binds application to a port in the machine
 app.listen(3000, function() {
   console.log('Listening on port 3000');
 });
