@@ -15,7 +15,17 @@ app.get('/blocks', function(request, response) {
   var blocks = ['Fixed', 'Movable', 'Rotating'];
 
   //response converts automatically the array to json
-  response.send(blocks);
+  // response.send(blocks);
+
+  //response forces json conversion
+  // response.json(blocks);
+
+  //redirects to /parts with default status code 302 (Moved temporarily)
+  // response.redirect('/parts');
+
+  //redirects to /parts with status code 301 (Moved permanently)
+  response.redirect(301, '/parts');
+
 });
 
 app.listen(3000, function() {
