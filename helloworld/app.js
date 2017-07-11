@@ -46,11 +46,8 @@ app.get('/parts', function(request, response) {
 });
 
 app.get('/bad', function(request, response) {
-
   var error = {errorMessage : 'Unable to handle request'};
-
   response.send(error);
-
 });
 
 //Binds application to a port in the machine
