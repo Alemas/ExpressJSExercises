@@ -1,0 +1,4 @@
+Covers the basic use of dynamic templates (hbs)
+  - loading hbs file with .render
+  - hbs files syntax
+  - use of partials (reutilization of the same template on different templates)
