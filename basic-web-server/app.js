@@ -8,6 +8,16 @@ var app = express();
 //Register the path to partials templates for hbs
 hbs.registerPartials(__dirname + '/views/partials');
 
+//Registers the function getFullYear to be called in any template
+hbs.registerHelper('getCurrentYear', () => {
+  return new Date().getFullYear()
+});
+
+//Registers a function that receives a string and return it all uppercase
+hbs.registerHelper('screamIt', (text) => {
+  return text.toUpperCase();
+});
+
 //Assigns 'hbs' to value 'view engine' on the app settings table
 app.set('view engine', 'hbs');
 
@@ -20,16 +30,14 @@ app.get('/about', (request, response) => {
   //'views' is the default directory that ExpressJS uses for templates
   //'render' loads .hbs files from 'views folder' passing arguments through a json (optional)
   response.render('about.hbs', {
-    pageTitle : 'About',
-    currentYear : new Date().getFullYear()
+    pageTitle : 'About'
   });
 });
 
 app.get('/', (request, response) => {
   response.render('home.hbs', {
     pageTitle : 'Home',
-    welcomeMessage : 'Welcome to my this',
-    currentYear : new Date().getFullYear()
+    welcomeMessage : 'Welcome to this thing'
   });
 })
 
