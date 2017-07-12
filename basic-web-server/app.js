@@ -3,23 +3,46 @@ const express = require('express');
 //Lets you build dynamic templates, loads hbs module
 const hbs = require('hbs');
 
+//Lets you write to files (fs = file system)
+const fs = require('fs');
+
 var app = express();
 
 //Register the path to partials templates for hbs
 hbs.registerPartials(__dirname + '/views/partials');
 
-//Registers the function getFullYear to be called in any template
+//Registers the function getFullYear to be used inside any template
 hbs.registerHelper('getCurrentYear', () => {
   return new Date().getFullYear()
 });
 
-//Registers a function that receives a string and return it all uppercase
+//Registers a function that receives a string and return it all uppercase to be used inside any template
 hbs.registerHelper('screamIt', (text) => {
   return text.toUpperCase();
 });
 
 //Assigns 'hbs' to value 'view engine' on the app settings table
 app.set('view engine', 'hbs');
+
+//Registers a middleware function
+app.use((request, response, next) => {
+  var time = new Date().toString();
+  var logString = `${time}: ${request.method} ${request.url}`;
+
+  console.log(logString);
+
+  //Creates a server.log file and append all logs to it
+  fs.appendFile('server.log', logString + '\n', (err) => {
+    if (err) {
+      console.log('Unable to append to server.log');
+    }
+  });
+  next();
+});
+
+app.use((request, response) => {
+  response.render('maintenance.hbs');
+});
 
 //Takes the absolute path to the folder 'public'
 //This way, typing localhost:3000/help.html will load our html file from 'public'

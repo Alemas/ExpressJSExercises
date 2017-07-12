@@ -6,4 +6,5 @@ Covers the basic use of dynamic templates (hbs)
     - the syntax for calling functions in templates is the same as when calling properties ({{function/property}})
     - hbs checks always first for a function and only then for a property
     - when calling a helper with arguments, the syntax is the following: {{helperMethod arg1 arg2 ...}}
-    
+  - use of middleware functions (app.use)
+  
